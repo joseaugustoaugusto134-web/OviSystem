@@ -51,7 +51,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_ovisystem`.`flocks` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `users_id` INT NOT NULL,
+  `usersId` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `active` TINYINT(1) NOT NULL DEFAULT 1,
   INDEX `fk_Lotes_Users1_idx` (`users_id` ASC) VISIBLE,
