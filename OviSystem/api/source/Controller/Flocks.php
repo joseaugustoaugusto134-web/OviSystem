@@ -49,4 +49,50 @@ class Flocks extends Api
         }
         return true;
     }
+
+public function update (array $data): void
+    {
+       $json = json_decode(file_get_contents("php://input"), true);
+       $data = array_merge($data, $json ?? []);
+
+        if(!filter_var($data["usersId"], FILTER_VALIDATE_INT)) {
+            $this->call(
+                400,
+                "bad_request",
+                "ID do usuário é obrigatório e deve ser um número inteiro",
+                "error"
+            )->back();
+            return;
+        }
+
+        if(!$this->validate($data)){
+            $this->call(
+                400,
+                "bad_request",
+                "O campo Name é obrigatório",
+                "error"
+            )->back();
+            return;
+        }
+
+        $flock = new Flock(
+            null,
+            $data["usersId"],
+            $data["Name"]
+        );
+      
+
+        if(!$faq->updateById($data["usersId"])){
+            $this->call(500, "internal_server_error", $faq->getErrorMessage(), "error")->back();
+            return;
+        }
+        $response = [
+            "id" => $flock->getId(),
+            "faqsCategoryId" => $flock->getUsersId(),
+            "question" => $flock->getName(),
+            "active" => $flock->getActive()
+        ];
+
+        $this->call(200,"success","Lote atualizado com sucesso","success")->back($response);
+    }
 }
