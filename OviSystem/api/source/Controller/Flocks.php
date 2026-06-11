@@ -21,8 +21,8 @@ class Flocks extends Api
 
         $flock = new Flock(
             null,
-            $data["Users_Id"],
-            $data["Name"]
+            $data["usersId"],
+            $data["name"]
         );
 
         if(!$flock->insert()){
@@ -31,7 +31,7 @@ class Flocks extends Api
         }
         $response = [
             "id" => $flock->getId(),
-            "user_Id" => $flock->getUserId(),
+            "usersId" => $flock->getUsersId(),
             "name" => $flock->getName(),
             "active" => $flock->getActive()
         ];
@@ -42,11 +42,54 @@ class Flocks extends Api
 
     public function validate (array $data): bool
     {
-        if(!isset($data["user_Id"]) || !isset($data["name"]) ||
-            empty($data["user_Id"]) || empty($data["name"]) ||
-           !filter_var($data["user_Id"], FILTER_VALIDATE_INT)) {
+        if(!isset($data["name"]) || empty($data["name"])) {
             return false;
         }
         return true;
+    }
+
+    public function update (array $data): void
+    {
+       $json = json_decode(file_get_contents("php://input"), true);
+       $data = array_merge($data, $json ?? []);
+       
+
+        if(!filter_var($data["flockId"], FILTER_VALIDATE_INT)) {
+            $this->call(
+                400,
+                "bad_request",
+                "ID do usuário é obrigatório e deve ser um número inteiro",
+                "error"
+            )->back();
+            return;
+        }
+
+        if(!$this->validate($data)){
+            $this->call(
+                400,
+                "bad_request",
+                "O campo Name é obrigatório...",
+                "error"
+            )->back();
+            return;
+        }
+
+        $flock = new Flock(
+            null,
+            $data["name"]
+        );
+      
+
+        if(!$flock->updateById($data["flockId"])){
+            $this->call(500, "internal_server_error", $flock->getErrorMessage(), "error")->back();
+            return;
+        }
+        $response = [
+            "id" => $flock->getId(),
+            "name" => $flock->getName(),
+            "active" => $flock->getActive()
+        ];
+
+        $this->call(200,"success","Lote atualizado com sucesso","success")->back($response);
     }
 }
