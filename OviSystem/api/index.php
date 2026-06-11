@@ -24,42 +24,17 @@ use CoffeeCode\Router\Router;
 $route = new Router(url("api"),":");
 
 $route->namespace("Source\Controller");
-
-// Início - Exercícios - Desafios
-$route->group("/products");
-$route->get("/list/{product_id}","Products:listById"); // select by id
-$route->get("/list","Products:listAll"); // select all
-$route->get("/list/paginator/{page}/{per_page}","Products:listPaginator"); // select all
-$route->post("/","Products:insert"); // insert
-$route->put("/{product_id}","Products:update"); // update
-$route->delete("/{product_id}","Products:delete"); // update
-$route->group(null);
-// Fim - Exercícios - Desafios
-
-$route->group("/faqs");
-$route->get("/list", "faqs\Faqs:listAll");
-$route->get("/list/{faqId}", "faqs\Faqs:listById");
-$route->post("/", "faqs\Faqs:insert");
-$route->put("/{faqId}", "faqs\Faqs:update");
-$route->delete("/delete/{faqId}", "faqs\Faqs:delete");
-$route->group(null);
-
-$route->group("/faqs-categories");
-$route->get("/list", "faqs\FaqsCategories:listAll");
-$route->get("/list/{categoryId}", "faqs\FaqsCategories:listById");
-$route->post("/", "faqs\FaqsCategories:insert");
-$route->put("/{categoryId}", "faqs\FaqsCategories:update");
-$route->delete("/delete/{faqId}", "faqs\FaqsCategories:delete");
-$route->group(null);
+// localhost/acme-3am/api/hello
+$route->get("/hello", "Api:hello");
 
 $route->group("/Flocks");
 $route->post("/", "Flocks:insert");
+$route->put("/{flockId}", "Flocks:update");
 $route->group(null);
 
 $route->group("/Sheeps");
 $route->post("/", "Sheeps:insert");
 $route->group(null);
-
 
 $route->dispatch();
 
