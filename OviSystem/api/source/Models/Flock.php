@@ -7,20 +7,20 @@ use Source\Core\Connect;
 class Flock extends Model
 {
     private ?int $id;
-    private ?int $userId;
+    private ?int $usersId;
     private ?string $name;
     private ?int $active;
 
-    public function __construct(?int $id = null, ?int $userId = null, ?string $name = null, ?int $active = 1)
+    public function __construct(?int $id = null, ?int $usersId = null, ?string $name = null, ?int $active = 1)
     {
         $this->id = $id;
-        $this->userId = $userId;
+        $this->usersId = $usersId;
         $this->name = $name;
         $this->active = $active;
 
-        $this->table = "Flocks";
+        $this->table = "flocks";
         $this->primaryKey = "id";
-        $this->fillable = ["Users_Id", "Name", "Active"];
+        $this->fillable = ["usersId", "name", "active"];
     }
 
     public function getId(): ?int
@@ -33,14 +33,14 @@ class Flock extends Model
         $this->id = $id;
     }
 
-    public function getUserId(): ?int
+    public function getUsersId(): ?int
     {
-        return $this->userId;
+        return $this->usersId;
     }
 
-    public function setUserId($userId): void
+    public function setUsersId($usersId): void
     {
-        $this->userId = $userId;
+        $this->usersId = $usersId;
     }
 
     public function getName(): ?string
