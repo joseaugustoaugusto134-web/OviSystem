@@ -9,6 +9,15 @@ class Flocks extends Api
 {
     public function insert (array $data): void
     {
+        if(!$this->authToken (1)){
+            $this->call(
+                401,
+                "unauthorized",
+                "Usuário não está autenticado (sem token ou token inválido).",
+                "error")->back();
+            return;
+        }
+
         if(!$this->validate($data)){
             $this->call(
                 400,
@@ -21,7 +30,7 @@ class Flocks extends Api
 
         $flock = new Flock(
             null,
-            $data["usersId"],
+            $data["users_id"],
             $data["name"]
         );
 
@@ -31,7 +40,7 @@ class Flocks extends Api
         }
         $response = [
             "id" => $flock->getId(),
-            "usersId" => $flock->getUsersId(),
+            "users_id" => $flock->getUsersId(),
             "name" => $flock->getName(),
             "active" => $flock->getActive()
         ];
@@ -52,7 +61,15 @@ class Flocks extends Api
     {
        $json = json_decode(file_get_contents("php://input"), true);
        $data = array_merge($data, $json ?? []);
-       
+
+        if(!$this->authToken (1)){
+            $this->call(
+                401,
+                "unauthorized",
+                "Usuário não está autenticado (sem token ou token inválido).",
+                "error")->back();
+            return;
+        }
 
         if(!filter_var($data["flockId"], FILTER_VALIDATE_INT)) {
             $this->call(
@@ -76,6 +93,7 @@ class Flocks extends Api
 
         $flock = new Flock(
             null,
+            $data["users_id"],
             $data["name"]
         );
       
@@ -86,6 +104,7 @@ class Flocks extends Api
         }
         $response = [
             "id" => $flock->getId(),
+            "users_id" => $flock->getUsersId(),
             "name" => $flock->getName(),
             "active" => $flock->getActive()
         ];
