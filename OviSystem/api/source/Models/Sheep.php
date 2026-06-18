@@ -1,41 +1,39 @@
 <?php
 
-namespace source\Models;
-
-use source\core\Connect;
-use source\core\Model;
+namespace Source\Models;
+use Source\Core\Model;
+use Source\Core\Connect;
 
 class Sheep extends Model
 {
     private ?int $id;
-    private ?int $flockId;
+    private ?int $flocksId;
     private ?int $motherId;
     private ?int $fatherId;
     private ?int $number;
-    private ?string $earTag;
-    private ?string $sex;
+    private ?string $eartag;
+    private ?int $sex; //não esquecer de trocar de varchar para tinyInt o sex
     private ?int $pregnancy;
     private ?string $birthDate;
     private ?string $breed;
     private ?int $active;
 
-    public function __construct(?int $id = null, ?int $flockId = null, ?int $motherId = null, ?int $fatherId = null, ?int $number = null, ?string $earTag = null, ?string $sex = null, ?int $pregnancy = 0, ?string $birthDate = null, ?string $breed = null, ?int $active = 1)
+    public function __construct(?int $id = null, ?int $flocksId = null, ?int $motherId = null, ?int $fatherId = null, ?int $number = null, ?string $eartag = null, ?int $sex = null, ?int $pregnancy = null, ?string $birthDate = null, ?string $breed = null, ?int $active = 1)
     {
         $this->id = $id;
-        $this->flockId = $flockId;
+        $this->flocksId = $flocksId;
         $this->motherId = $motherId;
         $this->fatherId = $fatherId;
         $this->number = $number;
-        $this->earTag = $earTag;
+        $this->eartag = $eartag;
         $this->sex = $sex;
         $this->pregnancy = $pregnancy;
-        $this->birthDate = $birthDate;
         $this->breed = $breed;
         $this->active = $active;
 
-        $this->table = "Sheeps";
+        $this->table = "sheeps";
         $this->primaryKey = "id";
-        $this->fillable = ["flockId", "motherId", "fatherId", "number", "earTag", "sex", "pregnancy", "birthDate", "breed", "active"];
+        $this->fillable = ["flocksId", "motherId", "fatherId", "number", "eartag", "sex", "pregnancy", "breed", "active"];
     }
 
     public function getId(): ?int
@@ -48,14 +46,14 @@ class Sheep extends Model
         $this->id = $id;
     }
 
-    public function getFlockId(): ?int
+    public function getFlocksId(): ?int
     {
-        return $this->flockId;
+        return $this->flocksId;
     }
 
-    public function setFlockId($flockId): void
+    public function setFlocksId($flocksId): void
     {
-        $this->flockId = $flockId;
+        $this->flocksId = $flocksId;
     }
 
     public function getMotherId(): ?int
@@ -88,17 +86,17 @@ class Sheep extends Model
         $this->number = $number;
     }
 
-    public function getEarTag(): ?string
+    public function getEartag(): ?string
     {
-        return $this->earTag;
+        return $this->eartag;
     }
 
-    public function setEarTag($earTag): void
+    public function setEartag($eartag): void
     {
-        $this->earTag = $earTag;
+        $this->eartag = $eartag;
     }
 
-    public function getSex(): ?string
+    public function getSex(): ?int
     {
         return $this->sex;
     }
@@ -116,16 +114,6 @@ class Sheep extends Model
     public function setPregnancy($pregnancy): void
     {
         $this->pregnancy = $pregnancy;
-    }
-
-    public function getBirthDate(): ?string
-    {
-        return $this->birhDate;
-    }
-
-    public function setBirthDate($birthDate): void
-    {
-        $this->birthDate = $birthDate;
     }
 
     public function getBreed(): ?string

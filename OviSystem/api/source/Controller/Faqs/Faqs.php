@@ -7,7 +7,6 @@ use Source\Models\Faq\Faq;
 
 class Faqs extends Api
 {
-
     public function listAll (array $data): void
     {
         $faq = new Faq();
@@ -132,15 +131,7 @@ class Faqs extends Api
         $this->call(200,"success","FAQ atualizada com sucesso","success")->back($response);
     }
 
-    public function validate (array $data): bool
-    {
-        if(!isset($data["faqs_category_id"]) || !isset($data["question"]) || !isset($data["answer"]) ||
-            empty($data["faqs_category_id"]) || empty($data["question"]) || empty($data["answer"]) ||
-           !filter_var($data["faqs_category_id"], FILTER_VALIDATE_INT)) {
-            return false;
-        }
-        return true;
-    }
+    
 
     public function delete(array $data): void
     {
@@ -179,4 +170,14 @@ class Faqs extends Api
             "success"
         )->back();
 }
+
+    public function validate (array $data): bool
+    {
+        if(!isset($data["faqs_category_id"]) || !isset($data["question"]) || !isset($data["answer"]) ||
+            empty($data["faqs_category_id"]) || empty($data["question"]) || empty($data["answer"]) ||
+           !filter_var($data["faqs_category_id"], FILTER_VALIDATE_INT)) {
+            return false;
+        }
+        return true;
+    }
 }

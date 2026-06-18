@@ -9,7 +9,7 @@ class Flocks extends Api
 {
     public function insert (array $data): void
     {
-        if(!$this->authToken (1)){
+        if(!$this->authToken (2)){
             $this->call(
                 401,
                 "unauthorized",
@@ -62,7 +62,7 @@ class Flocks extends Api
        $json = json_decode(file_get_contents("php://input"), true);
        $data = array_merge($data, $json ?? []);
 
-        if(!$this->authToken (1)){
+        if(!$this->authToken (2)){
             $this->call(
                 401,
                 "unauthorized",

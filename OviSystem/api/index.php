@@ -27,6 +27,15 @@ $route->namespace("Source\Controller");
 // localhost/acme-3am/api/hello
 $route->get("/hello", "Api:hello");
 
+$route->group("/users");
+$route->post("/register","Users:register"); // Registrar usuário comum
+$route->post("/login","Users:auth"); // login de usuário comum
+$route->put("/update","Users:update"); // update de usuário comum
+$route->post("/register-admin","Users:registerAdmin"); // Registrar usuário admin NÃO IMPLEMENTADO
+$route->post("/login-admin","Users:authAdmin"); // login de usuário admin
+$route->put("/update-admin","Users:updateAdmin"); // update de usuário admin
+$route->group(null);
+
 $route->group("/Flocks");
 $route->post("/", "Flocks:insert");
 $route->put("/{flockId}", "Flocks:update");
