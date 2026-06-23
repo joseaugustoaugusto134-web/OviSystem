@@ -47,7 +47,7 @@ class Vaccine extends Model
         return $this->sheepsId;
     }
 
-    public function setId($sheepsId): void
+    public function setSheepsId($sheepsId): void
     {
         $this->sheepsId = $sheepsId;
     }
@@ -87,7 +87,7 @@ class Vaccine extends Model
         return $this->aplicator;
     }
 
-    public function setAplicationDate($aplicator): void
+    public function setAplicator($aplicator): void
     {
         $this->aplicator = $aplicator;
     }
