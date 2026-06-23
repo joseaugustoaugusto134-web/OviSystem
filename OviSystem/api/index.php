@@ -38,11 +38,16 @@ $route->group(null);
 
 $route->group("/Flocks");
 $route->post("/", "Flocks:insert");
+$route->get("/", "Flocks:listAll");
+$route->get("/{flockId}", "Flocks:listById");
 $route->put("/{flockId}", "Flocks:update");
 $route->group(null);
 
 $route->group("/Sheeps");
 $route->post("/", "Sheeps:insert");
+$route->get("/", "Sheeps:listAll");
+$route->get("/{sheepId}", "Sheeps:listById");
+$route->put("/{sheepId}", "Sheeps:update");
 $route->group(null);
 
 $route->dispatch();

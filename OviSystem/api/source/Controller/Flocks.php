@@ -111,4 +111,62 @@ class Flocks extends Api
 
         $this->call(200,"success","Lote atualizado com sucesso","success")->back($response);
     }
+
+    public function listAll (array $data): void
+    {
+        if(!$this->authToken (2)){
+            $this->call(
+                401,
+                "unauthorized",
+                "Usuário não está autenticado (sem token ou token inválido).",
+                "error")->back();
+            return;
+        }
+
+        $flock = new flock();
+        $this->call(200,"success","Lista de lotes","success")->back($flock->selectAll());
+    }
+
+    public function listById(array $data): void
+    {
+
+        if(!$this->authToken (2)){
+            $this->call(
+                401,
+                "unauthorized",
+                "Usuário não está autenticado (sem token ou token inválido).",
+                "error")->back();
+            return;
+        }
+
+        if(!isset($data["flockId"]) || empty($data["flockId"]) || !filter_var($data["flockId"], FILTER_VALIDATE_INT)) {
+            $this->call(
+                400,
+                "bad_request",
+                "ID do lote é obrigatório e deve ser um número inteiro",
+                "error"
+            )->back(null);
+            return;
+        }
+
+        $flock = new Flock();
+        if(!$flock->selectById($data["flockId"])) {
+            $this->call(
+                404,
+                "not_found",
+                "Lote não encontrado",
+                "error"
+            )->back(null);
+            return;
+        }
+
+        $response = [
+            "id" => $flock->getId(),
+            "users_id" => $flock->getUsersId(),
+            "name" => $flock->getName(),
+            "active" => $flock->getActive()
+        ];
+
+        $this->call(200,"success","Lote encontrado","success")->back($response);
+    }    
 }
