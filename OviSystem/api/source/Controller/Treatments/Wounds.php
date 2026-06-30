@@ -46,7 +46,7 @@ class Wounds extends Api
         }
         $response = [
             "id" => $wound->getId(),
-            "users_id" => $wound->getSheepsId(),
+            "sheeps_id" => $wound->getSheepsId(),
             "vermifuge" => $wound->getVermifuge(),
             "aplication_date" => $wound->getAplicationDate(),
             "next_aplication" => $wound->getNextAplication(),
@@ -57,7 +57,7 @@ class Wounds extends Api
             "active" => $wound->getActive()
         ];
 
-        $this->call(201,"success","Vermifugação inserida com sucesso","success")->back($response);
+        $this->call(201,"success","Ferida inserida com sucesso","success")->back($response);
     }
 
     public function validate (array $data): bool

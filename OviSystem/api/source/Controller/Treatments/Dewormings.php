@@ -46,7 +46,7 @@ class Deworming extends Api
         }
         $response = [
             "id" => $deworming->getId(),
-            "users_id" => $deworming->getSheepsId(),
+            "sheeps_id" => $deworming->getSheepsId(),
             "vermifuge" => $deworming->getVermifuge(),
             "aplication_date" => $deworming->getAplicationDate(),
             "next_aplication" => $deworming->getNextAplication(),

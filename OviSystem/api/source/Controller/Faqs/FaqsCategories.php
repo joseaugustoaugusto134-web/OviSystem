@@ -48,6 +48,16 @@ class FaqsCategories extends Api
 
     public function insert (array $data): void
     {
+
+        if(!$this->authToken (1)){
+            $this->call(
+                401,
+                "unauthorized",
+                "Usuário não está autenticado (sem token ou token inválido).",
+                "error")->back();
+            return;
+        }
+
         if(!$this->validate($data)){
             $this->call(
                 400,
@@ -88,9 +98,17 @@ class FaqsCategories extends Api
 
     public function update (array $data): void
     {
-
     $json = json_decode(file_get_contents("php://input"), true);
     $data = array_merge($data, $json ?? []);
+
+        if(!$this->authToken (1)){
+            $this->call(
+                401,
+                "unauthorized",
+                "Usuário não está autenticado (sem token ou token inválido).",
+                "error")->back();
+            return;
+        }
 
         if(!filter_var($data["categoryId"], FILTER_VALIDATE_INT)) {
             $this->call(
@@ -137,7 +155,15 @@ class FaqsCategories extends Api
         $json = json_decode(file_get_contents("php://input"), true);
         $data = array_merge($data, $json ?? []);
 
-    
+        if(!$this->authToken (1)){
+            $this->call(
+                401,
+                "unauthorized",
+                "Usuário não está autenticado (sem token ou token inválido).",
+                "error")->back();
+            return;
+        }
+
         if (!isset($data["faqId"]) || !filter_var($data["faqId"], FILTER_VALIDATE_INT)) 
             {
             $this->call(

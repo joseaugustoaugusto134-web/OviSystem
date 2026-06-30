@@ -3,9 +3,9 @@
 namespace Source\Controller\Treatments;
 
 use Source\Controller\Api;
-use Source\Models\Treatment\Deworming;
+use Source\Models\Treatment\Disease;
 
-class Deworming extends Api
+class Diseases extends Api
 {
     public function insert (array $data): void
     {
@@ -28,41 +28,41 @@ class Deworming extends Api
             return;
         }
 
-        $deworming = new Deworming(
+        $disease = new Disease(
             null,
             $data["sheeps_id"],
-            $data["vermifuge"],
-            $data["aplication_date"],
-            $data["next_aplication"],
-            $data["dose"],
-            $data["via"],
-            $data["aplicator"],
+            $data["name"],
+            $data["start_date"],
+            $data["end_date"],
+            $data["situation"],
+            $data["veterinarian"],
+            $data["treatment"],
             $data["observation"]
         );
 
-        if(!$deworming->insert()){
-            $this->call(500, "internal_server_error", $deworming->getErrorMessage(), "error")->back();
+        if(!$disease->insert()){
+            $this->call(500, "internal_server_error", $disease->getErrorMessage(), "error")->back();
             return;
         }
         $response = [
-            "id" => $deworming->getId(),
-            "users_id" => $deworming->getSheepsId(),
-            "vermifuge" => $deworming->getVermifuge(),
-            "aplication_date" => $deworming->getAplicationDate(),
-            "next_aplication" => $deworming->getNextAplication(),
-            "dose" => $deworming->getDose(),
-            "via" => $deworming->getVia(),
-            "aplicator" => $deworming->getAplicator(),
-            "observation" =>$deworming->getObservation(),
-            "active" => $deworming->getActive()
+            "id" => $disease->getId(),
+            "sheeps_id" => $disease->getSheepsId(),
+            "name" => $disease->getName(),
+            "start_date" => $disease->getStartDate(),
+            "end_date" => $disease->getEndDate(),
+            "situation" => $disease->getSituation(),
+            "veterinarian" => $disease->getVeterinarian(),
+            "treatment" => $disease->getTreatment(),
+            "observation" =>$disease->getObservation(),
+            "active" => $disease->getActive()
         ];
 
-        $this->call(201,"success","Vermifugação inserida com sucesso","success")->back($response);
+        $this->call(201,"success","Doença inserida com sucesso","success")->back($response);
     }
 
     public function validate (array $data): bool
     {
-        if(!isset($data["vermifuge"]) || empty($data["vermifuge"]) || !isset($data["aplication_date"]) || empty($data["aplication_date"])) {
+        if(!isset($data["name"]) || empty($data["name"]) || !isset($data["start_date"]) || empty($data["start_date"])) {
             return false;
         }
         return true;
