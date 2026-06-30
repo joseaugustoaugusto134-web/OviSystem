@@ -149,23 +149,6 @@ Cria um novo usuário com `type_id = 2`. Não exige autenticação.
 
 Idêntico ao login comum, porém valida o usuário contra `type_id = 1`. Mesmo formato de body e resposta do endpoint anterior.
 
-### Atualizar usuário comum
-`PUT /users/update` 🔒 *(autenticado — type_id 2)*
-
-Atualiza os dados do usuário autenticado (identificado pelo token, não é necessário enviar ID na URL).
-
-> ⚠️ Endpoint em desenvolvimento no momento desta documentação — a lógica de atualização dos campos ainda não foi implementada no controller.
-
-### Registrar usuário administrador
-`POST /users/register-admin`
-
-> ⚠️ Rota mapeada, porém o método correspondente ainda não foi implementado no controller (`Users:registerAdmin`).
-
-### Atualizar usuário administrador
-`PUT /users/update-admin` 🔒 *(autenticado — type_id 1)*
-
-> ⚠️ Endpoint em desenvolvimento — apenas a verificação de autenticação está implementada; a atualização dos campos ainda não foi concluída.
-
 ## Entidade: Lotes — Flocks (`/Flocks`)
 
 Representa os lotes (agrupamentos) de ovelhas pertencentes a um produtor. Todas as rotas abaixo exigem autenticação (`type_id = 2`).
@@ -270,8 +253,6 @@ Representa os lotes (agrupamentos) de ovelhas pertencentes a um produtor. Todas 
 **Erros possíveis:**
 - `400 bad_request` — `flockId` inválido, ou campo `name` ausente.
 - `500 internal_server_error` — lote não encontrado ou nenhuma alteração realizada.
-
-> ⚠️ Endpoint de exclusão (`DELETE /Flocks/{flockId}`) ainda não implementado neste controller.
 
 ## Entidade: Ovelhas — Sheeps (`/Sheeps`)
 
@@ -396,7 +377,6 @@ Entidade principal do sistema: representa cada ovelha cadastrada, vinculada a um
 - `400 bad_request` — campo `number` ausente ou não numérico.
 - `500 internal_server_error` — ovelha não encontrada ou nenhuma alteração realizada.
 
-> ⚠️ Endpoint de exclusão (`DELETE /Sheeps/{sheepId}`) e listagem paginada (`GET /Sheeps/list/paginator/{page}/{per_page}`) ainda não implementados neste controller, embora a camada `Model` já disponha dos métodos `deleteById()`, `softDeleteById()` e `selectPaginator()` prontos para uso.
 
 ## Códigos de status HTTP utilizados
 
