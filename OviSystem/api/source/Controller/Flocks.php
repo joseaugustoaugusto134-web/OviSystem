@@ -123,7 +123,7 @@ class Flocks extends Api
             return;
         }
 
-        $flock = new flock();
+        $flock = new Flock();
         $this->call(200,"success","Lista de lotes","success")->back($flock->selectAll());
     }
 
