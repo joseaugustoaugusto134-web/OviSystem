@@ -64,6 +64,11 @@ $route->get("/", "Diseases:listAll");
 $route->put("/{diseaseId}", "Diseases:update");
 $route->group(null);
 
+$route->group("/Treatments");
+$route->post("/", "Treatments:insert");
+$route->get("/", "Treatments:listAll");
+$route->group(null);
+
 $route->dispatch();
 
 /** ERROR REDIRECT */
