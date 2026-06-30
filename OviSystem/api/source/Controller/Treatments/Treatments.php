@@ -4,7 +4,7 @@
 namespace Source\Controller\Treatments;
 
 use Source\Controller\Api;
-use Source\Models\Treatment\Vaccine;
+use Source\Models\Treatment\Treatment;
 
 class Treatments extends Api
 {

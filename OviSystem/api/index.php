@@ -50,6 +50,20 @@ $route->get("/{sheepId}", "Sheeps:listById");
 $route->put("/{sheepId}", "Sheeps:update");
 $route->group(null);
 
+$route->group("/Vaccines");
+$route->post("/", "Vaccines:insert");
+$route->group(null);
+
+$route->group("/Dewormings");
+$route->post("/", "Dewormings:insert");
+$route->group(null);
+
+$route->group("/Diseases");
+$route->post("/", "Diseases:insert");
+$route->get("/", "Diseases:listAll");
+$route->put("/{diseaseId}", "Diseases:update");
+$route->group(null);
+
 $route->dispatch();
 
 /** ERROR REDIRECT */
