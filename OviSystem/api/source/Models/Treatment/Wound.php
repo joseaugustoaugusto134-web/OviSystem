@@ -20,19 +20,19 @@ class Wound extends Model
     public function __construct(?int $id = null, ?int $sheepsId = null, ?string $description = null, ?string $date = null, ?string $location = null, ?string $situation, ?string $severity = null,?string $treatment = null, ?string $observation = null, ?int $active = 1)
     {
         $this->id = $id;
-    $this->sheepsId = $sheepsId;
-    $this->description = $description;
-    $this->date = $date;
-    $this->location = $location;
-    $this->situation = $situation;
-    $this->severity = $severity;
-    $this->treatment = $treatment;
-    $this->observation = $observation;
-    $this->active = $active;
+        $this->sheepsId = $sheepsId;
+        $this->description = $description;
+        $this->date = $date;
+        $this->location = $location;
+        $this->situation = $situation;
+        $this->severity = $severity;
+        $this->treatment = $treatment;
+        $this->observation = $observation;
+        $this->active = $active;
 
-    $this->table = "wounds";
-    $this->primaryKey = "id";
-    $this->fillable = ["sheepsId", "description", "date", "location", "situation", "severity" , "treatment" , "observation",  "active"];
+        $this->table = "wounds";
+        $this->primaryKey = "id";
+        $this->fillable = ["sheepsId", "description", "date", "location", "situation", "severity" , "treatment" , "observation",  "active"];
     }
     
     public function getId(): ?int

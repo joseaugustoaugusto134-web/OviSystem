@@ -44,7 +44,7 @@ class Vaccines extends Api
         }
         $response = [
             "id" => $vaccine->getId(),
-            "users_id" => $vaccine->getSheepsId(),
+            "sheeps_id" => $vaccine->getSheepsId(),
             "name" => $vaccine->getName(),
             "aplication_date" => $vaccine->getAplicationDate(),
             "dose" => $vaccine->getDose(),
