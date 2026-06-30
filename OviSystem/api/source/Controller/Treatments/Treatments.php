@@ -69,4 +69,21 @@ class Treatments extends Api
         }
         return true;
     }
+
+        public function listAll (array $data): void
+    {
+        if(!$this->authToken (2)){
+            $this->call(
+                401,
+                "unauthorized",
+                "Usuário não está autenticado (sem token ou token inválido).",
+                "error")->back();
+            return;
+        }
+
+        $treatment = new Treatment();
+        $this->call(200,"success","Lista de tratamentos","success")->back($treatment->selectAll());
+    }
+
+    
 }
