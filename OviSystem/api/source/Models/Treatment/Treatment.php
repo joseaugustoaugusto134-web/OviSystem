@@ -60,6 +60,16 @@ class Treatment extends Model
     }
 
 
+     public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType($type): void
+    {
+        $this->type = $type;
+    }
+
      public function getStartDate(): ?string
     {
         return $this->startDate;
