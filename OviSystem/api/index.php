@@ -36,6 +36,22 @@ $route->post("/login-admin","Users:authAdmin"); // login de usuário admin
 $route->put("/update-admin","Users:updateAdmin"); // update de usuário admin
 $route->group(null);
 
+$route->group("/faqs");
+$route->get("/list", "faqs\Faqs:listAll");
+$route->get("/list/{faqId}", "faqs\Faqs:listById");
+$route->post("/", "faqs\Faqs:insert");
+$route->put("/{faqId}", "faqs\Faqs:update");
+$route->delete("/delete/{faqId}", "faqs\Faqs:delete");
+$route->group(null);
+
+$route->group("/faqs-categories");
+$route->get("/list", "faqs\FaqsCategories:listAll");
+$route->get("/list/{categoryId}", "faqs\FaqsCategories:listById");
+$route->post("/", "faqs\FaqsCategories:insert");
+$route->put("/{categoryId}", "faqs\FaqsCategories:update");
+$route->delete("/delete/{faqId}", "faqs\FaqsCategories:delete");
+$route->group(null);
+
 $route->group("/Flocks");
 $route->post("/", "Flocks:insert");
 $route->get("/", "Flocks:listAll");
