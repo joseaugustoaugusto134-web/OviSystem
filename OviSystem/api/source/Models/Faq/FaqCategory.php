@@ -12,7 +12,7 @@ class FaqCategory extends Model
     private ?string $name;
     private ?int $active;
 
-    public function __construct(?int $id = null, ?string $name = null)
+    public function __construct(?int $id = null, ?string $name = null, ?int $active = null)
     {
         $this->id = $id;
         $this->name = $name;
