@@ -28,7 +28,7 @@ form.addEventListener("submit", async (event) => {
         console.log(response);
 
         window.location.href = "login.html";
-        form.reset();
+    
     } catch (error) {
         console.error(error);
     }
