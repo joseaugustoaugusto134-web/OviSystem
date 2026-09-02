@@ -1,0 +1,30 @@
+import Users from "./Users.js";
+
+const users = new Users();
+
+const form = document.querySelector(".form");
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        farm: formData.get("farm"),
+        password: formData.get("password")
+    };
+
+    try {
+        console.log(data)
+        const response = await users.register(data);
+
+        console.log(response);
+
+        // window.location.href = "login.html";
+    } catch (error) {
+        console.error(error);
+    }
+
+});
