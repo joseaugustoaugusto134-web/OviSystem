@@ -8,6 +8,10 @@ class Users extends Api
 {
     public function register (array $data): void
     {
+
+        $json = json_decode(file_get_contents("php://input"), true);
+        $data = array_merge($data, $json ?? []);
+
         if(!isset($data['password']) || empty($data['password'])) {
             $this->call(400,
                 "bad_request",
@@ -29,6 +33,7 @@ class Users extends Api
             2,
             $data['name'],
             $data['email'],
+            $data['farm'],
             $data['password']
         );
 
@@ -41,7 +46,8 @@ class Users extends Api
         $response = [
             "id" => $user->getId(),
             "name" => $user->getName(),
-            "email" => $user->getEmail()
+            "email" => $user->getEmail(),
+            "farm" => $user->getFarm()
         ];
 
         $this->call(201,"success","Usuário inserido com sucesso","created")->back($response);
