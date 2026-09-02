@@ -13,24 +13,26 @@ class User extends Model
     private ?int $typeId;
     private ?string $name;
     private ?string $email;
+    private ?string $farm;
     private ?string $password;
     private ?string $photo;
     private ?string $active;
 
     private ?string $token = null;
 
-    public function __construct(?int $id = null, ?int $typeId = null, ?string $name = null, ?string $email = null, ?string $password = null, ?string $photo = null)
+    public function __construct(?int $id = null, ?int $typeId = null, ?string $name = null, ?string $email = null, ?string $farm = null,?string $password = null, ?string $photo = null)
     {
         $this->id = $id;
         $this->typeId = $typeId;
         $this->name = $name;
         $this->email = $email;
+        $this->farm = $farm;
         $this->password = $password;
         $this->photo = $photo ?? '';
 
         $this->table = 'users'; // nome da tabela do banco
         $this->primaryKey = 'id'; // nome da chave primária da tabela
-        $this->fillable = ['typeId', 'name', 'email', 'password', 'photo']; // camelCase
+        $this->fillable = ['typeId', 'name', 'email', 'farm', 'password', 'photo']; // camelCase
     }
 
     public function getId(): ?int
@@ -71,6 +73,16 @@ class User extends Model
     public function setEmail(?string $email): void
     {
         $this->email = $email;
+    }
+
+    public function getFarm(): ?string
+    {
+        return $this->farm;
+    }
+
+    public function setFarm(?string $farm): void
+    {
+        $this->farm = $farm;
     }
 
     public function getPassword(): ?string
