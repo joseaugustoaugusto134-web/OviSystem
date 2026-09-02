@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="assets/_common/styles/reset.css" />
   <link rel="stylesheet" href="assets/_common/styles/base.css" />
   <link rel="stylesheet" href="assets/_common/styles/auth.css" />
+  <script type="module" src="Users.js"></script>
+  <script type="module" src="Login.js"></script>
 </head>
 <body class="auth-body">
   <header class="topbar">
@@ -22,7 +24,7 @@
     <section class="auth__card">
       <h1>Entrar</h1>
       <p class="auth__sub">Acesse o painel do seu rebanho.</p>
-      <form class="form" onsubmit="event.preventDefault(); window.location.href='lotes.html';">
+      <form class="form">
         <label class="field">
           <span>E-mail</span>
           <input type="email" name="email" placeholder="seu@email.com" required />
