@@ -16,13 +16,19 @@ form.addEventListener("submit", async (event) => {
         password: formData.get("password")
     };
 
+    if(data.password !== formData.get("password2")){
+        console.error(error)
+        return
+    }
+
     try {
         console.log(data)
         const response = await users.register(data);
 
         console.log(response);
 
-        // window.location.href = "login.html";
+        window.location.href = "login.html";
+        form.reset();
     } catch (error) {
         console.error(error);
     }
