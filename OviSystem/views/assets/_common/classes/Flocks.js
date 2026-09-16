@@ -5,7 +5,7 @@ export default class Flocks{
     #name;
     #active;
 
-    constructor({ id = null , userId = null, name = '', active = 1} - {})
+    constructor({ id = null , userId = null, name = '', active = 1} = {})
     {
         this.id = id;
         this.userId = userId;
