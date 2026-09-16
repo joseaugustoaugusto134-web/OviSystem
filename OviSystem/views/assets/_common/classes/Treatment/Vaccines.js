@@ -93,6 +93,6 @@ export default class Vaccines{
 
 
     toJSON() {
-        return { id: this.id, userId: this.userId, name: this.userId };
+        return { id: this.id, sheepsId: this.sheepsId, name: this.name, aplicationDate: this.aplicationDate, dose: this.dose , aplicator: this.aplicator, observation: this.observation };
     }
 }
