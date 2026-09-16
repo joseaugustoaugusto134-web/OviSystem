@@ -43,6 +43,6 @@ export default class Flocks{
 
 
     toJSON() {
-        return { id: this.id, userId: this.userId, name: this.userId };
+        return { id: this.id, userId: this.userId, name: this.name };
     }
 }
