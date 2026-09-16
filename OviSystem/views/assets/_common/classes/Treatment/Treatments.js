@@ -1,10 +1,10 @@
-export default class Vaccines{
+export default class Treatments{
 
     #id;
     #sheepsId;
-    #name;
-    #aplicationDate;
-    #dose;
+    #type;
+    #startDate;
+    #endDate;
     #aplicator;
     #observation;
     #active;
@@ -93,6 +93,6 @@ export default class Vaccines{
 
 
     toJSON() {
-        return { id: this.id, sheepsId: this.sheepsId, name: this.name, aplicationDate: this.aplicationDate, dose: this.dose , aplicator: this.aplicator, observation: this.observation, active: this.active };
+        return { id: this.id, sheepsId: this.sheepsId, name: this.name, aplicationDate: this.aplicationDate, dose: this.dose , aplicator: this.aplicator, observation: this.observation };
     }
 }

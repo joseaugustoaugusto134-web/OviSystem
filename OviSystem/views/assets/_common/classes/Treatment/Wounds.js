@@ -120,6 +120,6 @@ export default class Vaccines{
 
 
     toJSON() {
-        return { id: this.id, sheepsId: this.sheepsId, description: this.description, date: this.date, location: this.location, situation: this.situation, severity: this.severity, treatment: this.treatment, observation: this.observation };
+        return { id: this.id, sheepsId: this.sheepsId, description: this.description, date: this.date, location: this.location, situation: this.situation, severity: this.severity, treatment: this.treatment, observation: this.observation, active: this.active };
     }
 }
